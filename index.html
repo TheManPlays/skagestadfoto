@@ -7,39 +7,59 @@
     <style>
         /* Global styling */
         body {
-            font-family: 'Times New Roman', Times, serif; /* Bruke Times New Roman for alle tekster */
+            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for alle tekster */
             margin: 0;
             padding: 0;
             background-color: white;
             color: black;
         }
 
-        /* Header uten logo */
+        /* Header */
         header {
-            display: flex;
-            justify-content: center;
-            padding: 20px;
             background-color: black;
             color: white;
+            padding: 15px 0;
+            text-align: center;
             position: relative;
-            align-items: center;
         }
 
         .menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
             list-style: none;
-            margin: 0;
             padding: 0;
-            display: flex; /* Horisontal meny */
-        }
-
-        .menu li {
-            margin: 0 15px;
         }
 
         .menu a {
             color: white;
             text-decoration: none;
             font-size: 18px;
+            padding: 10px 15px;
+            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for meny-tekst */
+        }
+
+        .menu a:hover {
+            background-color: darkgray;
+            border-radius: 5px;
+        }
+
+        /* Hamburger menu (hidden by default) */
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .hamburger-menu span {
+            background-color: white;
+            display: block;
+            height: 4px;
+            width: 30px;
+            margin: 6px 0;
         }
 
         /* Hero Section */
@@ -57,10 +77,11 @@
         .hero-content {
             color: white;
             text-align: center;
+            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for hero-tekst */
         }
 
         .hero h1 {
-            font-size: 50px;
+            font-size: 60px;
             text-transform: uppercase;
         }
 
@@ -89,6 +110,7 @@
             font-size: 50px;
             color: white;
             text-transform: uppercase;
+            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for galleri-tekst */
         }
 
         /* Kontakt meg seksjon */
@@ -101,10 +123,12 @@
         .contact h2 {
             font-size: 36px;
             color: black;
+            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for kontakt-overskrift */
         }
 
         .contact p {
             font-size: 18px;
+            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for kontakt-tekst */
         }
 
         .contact button {
@@ -114,6 +138,7 @@
             border: none;
             font-size: 18px;
             cursor: pointer;
+            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for knappe-tekst */
         }
 
         .contact button:hover {
@@ -129,43 +154,59 @@
             position: relative;
             bottom: 0;
             width: 100%;
+            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for footer-tekst */
         }
 
         /* Responsiv Design - Endringer for mobile enheter */
         @media (max-width: 768px) {
             .menu {
-                display: flex; /* Hold menyen horisontal */
-                flex-direction: row; /* Horisontal layout */
-                justify-content: center;
+                display: none; /* Skjuler menyen på mobile enheter */
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                background-color: black;
             }
 
             .menu a {
-                font-size: 16px;
-                padding: 8px 12px;
+                padding: 15px;
+                font-size: 18px;
+                border-bottom: 1px solid white;
+                font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for meny-tekst på mobil */
+            }
+
+            .menu.active {
+                display: flex; /* Vist meny når aktiv */
+            }
+
+            .hamburger-menu {
+                display: block; /* Vist hamburger-ikon på mobile enheter */
             }
 
             .hero h1 {
-                font-size: 30px;
+                font-size: 40px;
             }
         }
     </style>
 </head>
-<body id="index-page">
+<body>
 
     <!-- Header -->
     <header>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <nav class="menu">
-            <ul>
-                <li><a href="index.html">Hjem</a></li>
-                <li><a href="galleri.html">Galleri</a></li>
-                <li><a href="ommeg.html">Om meg</a></li>
-                <li><a href="bestillher.html">Bestill her</a></li>
-            </ul>
+            <a href="index.html">Hjem</a>
+            <a href="galleri.html">Galleri</a>
+            <a href="ommeg.html">Om Meg</a>
+            <a href="bestillher.html">Bestill her</a>
         </nav>
     </header>
 
-    <!-- Hovedinnhold (Hero Section med Skagestad Foto) -->
-    <section id="home" class="hero">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="hero-content">
             <h1>SKAGESTAD FOTO</h1>
             <p>Fotografering av natur og landskap</p>
@@ -181,9 +222,9 @@
     </section>
 
     <!-- Kontakt meg seksjon -->
-    <section id="contact" class="contact">
+    <section class="contact">
         <h2>Kontakt meg</h2>
-        <p>Hei! ta gjerne kontakt dersom du er interessert i et/flere av bildene jeg har, eller om du har noe spørsmål</p>
+        <p>Hei! Ta gjerne kontakt dersom du er interessert i et/flere av bildene jeg har, eller om du har noen spørsmål.</p>
         <button onclick="window.location.href='mailto:karl.skagestad@gmail.com'">Send en e-post</button>
     </section>
 
@@ -191,6 +232,14 @@
     <footer>
         <p>&copy; 2025 Skagestad Foto</p>
     </footer>
+
+    <!-- JavaScript for Hamburger Menu -->
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
