@@ -120,6 +120,41 @@
             bottom: 0;
             width: 100%;
         }
+
+        /* Responsiv Design - Endringer for mobile enheter */
+        @media (max-width: 768px) {
+            .gallery-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 bilder i bredden for mobil */
+            }
+
+            .menu a {
+                font-size: 16px; /* Litt mindre skrift for mobil */
+                padding: 8px 12px;
+            }
+
+            .modal-content {
+                width: 90%; /* Endre bredde for modalen på mobil */
+            }
+
+            header h1 {
+                font-size: 24px; /* Mindre tekststørrelse for mobil */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-container {
+                grid-template-columns: 1fr; /* 1 bilde i bredden for mindre skjermer */
+            }
+
+            .menu a {
+                font-size: 14px; /* Endre skriftstørrelse på mobil */
+                padding: 6px 10px;
+            }
+
+            header h1 {
+                font-size: 20px; /* Endre skriftstørrelse for mobil */
+            }
+        }
     </style>
 </head>
 <body>
@@ -132,7 +167,7 @@
             <a href="galleri.html">Galleri</a>
             <a href="ommeg.html">Om Meg</a>
             <a href="bestillher.html">Bestill her</a>
-
+        </div>
     </header>
 
     <!-- Galleri - Bilder -->
