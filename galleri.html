@@ -3,121 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skagestad Foto</title>
+    <title>Galleri - Skagestad Foto</title>
     <style>
-        /* Global styling */
         body {
-            font-family: 'Times New Roman', Times, serif; /* Bruke Times New Roman for alle tekster */
+            font-family: 'Times New Roman', Times, serif;
             margin: 0;
             padding: 0;
             background-color: white;
             color: black;
         }
 
-        /* Header uten logo */
+        /* Header */
         header {
-            display: flex;
-            justify-content: center;
-            padding: 20px;
             background-color: black;
             color: white;
+            padding: 15px 0;
+            text-align: center;
             position: relative;
-            align-items: center;
         }
 
         .menu {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex; /* Horisontal meny */
-        }
-
-        .menu li {
-            margin: 0 15px;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
         }
 
         .menu a {
             color: white;
             text-decoration: none;
             font-size: 18px;
+            padding: 10px 15px;
         }
 
-        /* Hero Section */
-        .hero {
-            background-image: url('bilder/natur12.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .menu a:hover {
+            background-color: darkgray;
+            border-radius: 5px;
+        }
+
+        /* Galleri - Bilde visning */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 bilder i bredden */
+            gap: 15px;
+            padding: 20px;
+        }
+
+        figure {
             position: relative;
         }
 
-        .hero-content {
-            color: white;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 50px;
-            text-transform: uppercase;
-        }
-
-        /* Galleri-bilde under Hero */
-        .gallery-preview {
-            display: flex;
-            justify-content: center;
-            margin-top: 40px;
-            position: relative;
-            width: 100%;
-        }
-
-        .gallery-preview img {
-            width: 100%;
-            height: 80vh;
-            object-fit: cover;
+        .gallery-container img {
+            width: 100%; /* Fyller opp plassen */
+            height: 400px; /* Sett høyde på bildene */
+            object-fit: contain; /* Bevarer proporsjonene på bildene */
             border-radius: 8px;
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
-        .gallery-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 50px;
-            color: white;
-            text-transform: uppercase;
+        .gallery-container img:hover {
+            transform: scale(1.05);
         }
 
-        /* Kontakt meg seksjon */
-        .contact {
-            padding: 40px;
-            background-color: #f4f4f4;
+        figcaption {
             text-align: center;
+            font-size: 16px;
+            margin-top: 10px;
         }
 
-        .contact h2 {
-            font-size: 36px;
-            color: black;
+        /* Modal - Visning av bilde */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
         }
 
-        .contact p {
-            font-size: 18px;
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
         }
 
-        .contact button {
-            padding: 10px;
-            background-color: blue;
-            color: white;
-            border: none;
-            font-size: 18px;
+        /* Lukk-knapp for modal */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
             cursor: pointer;
-        }
-
-        .contact button:hover {
-            background-color: darkblue;
         }
 
         /* Footer - Copyright */
@@ -133,6 +124,10 @@
 
         /* Responsiv Design - Endringer for mobile enheter */
         @media (max-width: 768px) {
+            .gallery-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 bilder i bredden for mobil */
+            }
+
             .menu {
                 display: flex; /* Hold menyen horisontal */
                 flex-direction: row; /* Horisontal layout */
@@ -144,54 +139,137 @@
                 padding: 8px 12px;
             }
 
-            .hero h1 {
-                font-size: 30px;
+            .modal-content {
+                width: 90%;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-container {
+                grid-template-columns: 1fr; /* 1 bilde i bredden for mindre skjermer */
+            }
+
+            .menu a {
+                font-size: 14px;
+                padding: 6px 10px;
+            }
+
+            header h1 {
+                font-size: 20px;
             }
         }
     </style>
 </head>
-<body id="index-page">
+<body>
 
     <!-- Header -->
     <header>
-        <nav class="menu">
-            <ul>
-                <li><a href="index.html">Hjem</a></li>
-                <li><a href="galleri.html">Galleri</a></li>
-                <li><a href="ommeg.html">Om meg</a></li>
-                <li><a href="bestillher.html">Bestill her</a></li>
-            </ul>
-        </nav>
+        <h1>Galleri</h1>
+        <div class="menu">
+            <a href="index.html">Hjem</a>
+            <a href="galleri.html">Galleri</a>
+            <a href="ommeg.html">Om Meg</a>
+            <a href="bestillher.html">Bestill her</a>
+        </div>
     </header>
 
-    <!-- Hovedinnhold (Hero Section med Skagestad Foto) -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>SKAGESTAD FOTO</h1>
-            <p>Fotografering av natur og landskap</p>
-        </div>
+    <!-- Galleri - Bilder -->
+    <section class="gallery-container">
+        <figure>
+            <img src="bilder/natur1.jpg" alt="Bilde 1" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#1</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur2.jpg" alt="Bilde 2" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#2</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur3.jpg" alt="Bilde 3" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#3</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur4.jpg" alt="Bilde 4" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#4</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur5.jpg" alt="Bilde 5" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#5</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur6.jpg" alt="Bilde 6" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#6</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur7.jpg" alt="Bilde 7" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#7</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur9.jpg" alt="Bilde 8" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#8</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur11.jpg" alt="Bilde 9" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#9</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur12.jpg" alt="Bilde 10" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#10</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/svarthvitt1.jpg" alt="Bilde 11" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#11</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/svarthvitt2.jpg" alt="Bilde 12" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#12</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/svarthvitt3.jpg" alt="Bilde 13" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#13</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/svarthvitt5.jpg" alt="Bilde 14" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#14</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/svarthvitt6.jpg" alt="Bilde 15" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#15</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur13.jpg" alt="Bilde 16" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#16</figcaption>
+        </figure>
     </section>
 
-    
-    <!-- Galleri-bilde under Hero -->
-    <section class="gallery-preview">
-        <a href="galleri.html">
-            <img src="bilder/svarthvitt2.jpg" alt="Galleri Link">
-            <div class="gallery-text">Galleri</div>
-        </a>
-    </section>
-
-    <!-- Kontakt meg seksjon -->
-    <section id="contact" class="contact">
-        <h2>Kontakt meg</h2>
-        <p>Hei! ta gjerne kontakt dersom du er interessert i et/flere av bildene jeg har, eller om du har noe spørsmål</p>
-        <button onclick="window.location.href='mailto:karl.skagestad@gmail.com'">Send en e-post</button>
-    </section>
+    <!-- Modal - Visning av bilde -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Skagestad Foto</p>
     </footer>
 
+    <script>
+        // Funksjon for å åpne modal med bildet
+        function openModal(img) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("modalImage");
+            modal.style.display = "block";
+            modalImg.src = img.src;
+        }
+
+        // Funksjon for å lukke modal
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+    </script>
 </body>
 </html>
