@@ -25,18 +25,11 @@
             align-items: center;
         }
 
-        .hamburger-menu {
-            display: block;
-            font-size: 30px;
-            cursor: pointer;
-            color: white;
-        }
-
         .menu {
             list-style: none;
             margin: 0;
             padding: 0;
-            display: flex;
+            display: flex; /* Horisontal meny */
         }
 
         .menu li {
@@ -138,32 +131,21 @@
             width: 100%;
         }
 
-        /* Hamburger Menu for Mobile */
+        /* Responsiv Design - Endringer for mobile enheter */
         @media (max-width: 768px) {
             .menu {
-                display: none;
-                flex-direction: column; /* Plasser menyen vertikalt */
-                align-items: flex-start;
-                margin-top: 10px;
+                display: flex; /* Hold menyen horisontal */
+                flex-direction: row; /* Horisontal layout */
+                justify-content: center;
             }
 
-            .menu.active {
-                display: flex;
-                position: absolute;
-                top: 60px;
-                right: 20px;
-                background-color: black;
-                padding: 20px;
-                border-radius: 8px;
+            .menu a {
+                font-size: 16px;
+                padding: 8px 12px;
             }
 
-            .menu li {
-                margin: 10px 0;
-            }
-
-            .hamburger-menu {
-                display: block;
-                margin-top: 10px;
+            .hero h1 {
+                font-size: 30px;
             }
         }
     </style>
@@ -172,7 +154,6 @@
 
     <!-- Header -->
     <header>
-        <div class="hamburger-menu" onclick="toggleMenu()">&#9776;</div>
         <nav class="menu">
             <ul>
                 <li><a href="index.html">Hjem</a></li>
@@ -191,7 +172,6 @@
         </div>
     </section>
 
-    
     <!-- Galleri-bilde under Hero -->
     <section class="gallery-preview">
         <a href="galleri.html">
@@ -211,14 +191,6 @@
     <footer>
         <p>&copy; 2025 Skagestad Foto</p>
     </footer>
-
-    <script>
-        // Toggle the hamburger menu on click
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            menu.classList.toggle('active');
-        }
-    </script>
 
 </body>
 </html>
