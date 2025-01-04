@@ -188,6 +188,289 @@
             <figcaption>#2</figcaption>
         </figure>
         <figure>
+            <img src="bilder/landskap1.jpg" alt="Bilde 3" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#3</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/landskap2.jpg" alt="Bilde 4" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#4</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur3.jpg" alt="Bilde 5" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#5</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur4.jpg" alt="Bilde 6" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#6</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur5.jpg" alt="Bilde 7" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#7</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur6.jpg" alt="Bilde 8" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#8</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur7.jpg" alt="Bilde 9" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#9</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur9.jpg" alt="Bilde 10" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#10</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur11.jpg" alt="Bilde 11" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#11</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur12.jpg" alt="Bilde 12" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#12</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/svarthvitt1.jpg" alt="Bilde 13" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#13</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/svarthvitt2.jpg" alt="Bilde 14" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#14</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/svarthvitt3.jpg" alt="Bilde 15" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#15</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/svarthvitt5.jpg" alt="Bilde 16" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#16</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/svarthvitt6.jpg" alt="Bilde 17" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#17</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur13.jpg" alt="Bilde 18" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#18</figcaption>
+        </figure>
+    </section>
+
+    <!-- Modal - Visning av bilde -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage" onclick="closeModal()"> <!-- Klikk på bildet for å lukke -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Skagestad Foto</p>
+    </footer>
+
+    <script>
+        // Funksjon for å åpne modal med bildet
+        function openModal(img) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("modalImage");
+            modal.style.display = "block";
+            modalImg.src = img.src;
+        }
+
+        // Funksjon for å lukke modal
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleri - Skagestad Foto</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: black;
+        }
+
+        /* Header */
+        header {
+            background-color: black;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+        }
+
+        .menu a:hover {
+            background-color: darkgray;
+            border-radius: 5px;
+        }
+
+        /* Galleri - Bilde visning */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 bilder i bredden */
+            gap: 15px;
+            padding: 20px;
+        }
+
+        figure {
+            position: relative;
+        }
+
+        .gallery-container img {
+            width: 100%; /* Fyller opp plassen */
+            height: 400px; /* Sett høyde på bildene */
+            object-fit: contain; /* Bevarer proporsjonene på bildene */
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-container img:hover {
+            transform: scale(1.05);
+        }
+
+        figcaption {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        /* Modal - Visning av bilde */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        /* Lukk-knapp for modal */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Footer - Copyright */
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsiv Design - Endringer for mobile enheter */
+        @media (max-width: 768px) {
+            .gallery-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 bilder i bredden for mobil */
+            }
+
+            .menu {
+                display: flex; /* Hold menyen horisontal */
+                flex-direction: row; /* Horisontal layout */
+                justify-content: center;
+            }
+
+            .menu a {
+                font-size: 16px;
+                padding: 8px 12px;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-container {
+                grid-template-columns: 1fr; /* 1 bilde i bredden for mindre skjermer */
+            }
+
+            .menu a {
+                font-size: 14px;
+                padding: 6px 10px;
+            }
+
+            header h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Galleri</h1>
+        <div class="menu">
+            <a href="index.html">Hjem</a>
+            <a href="galleri.html">Galleri</a>
+            <a href="ommeg.html">Om Meg</a>
+            <a href="bestillher.html">Bestill her</a>
+        </div>
+    </header>
+
+    <!-- Galleri - Bilder -->
+    <section class="gallery-container">
+        <figure>
+            <img src="bilder/natur1.jpg" alt="Bilde 1" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#1</figcaption>
+        </figure>
+        <figure>
+            <img src="bilder/natur2.jpg" alt="Bilde 2" class="gallery-item" onclick="openModal(this)">
+            <figcaption>#2</figcaption>
+        </figure>
+        <figure>
             <img src="bilder/natur3.jpg" alt="Bilde 3" class="gallery-item" onclick="openModal(this)">
             <figcaption>#3</figcaption>
         </figure>
