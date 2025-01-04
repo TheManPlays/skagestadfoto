@@ -38,6 +38,7 @@
             border-radius: 5px;
         }
 
+        /* Gallery */
         .gallery-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -101,6 +102,7 @@
             font-weight: bold;
         }
 
+        /* Form Section */
         .form-section {
             background-color: #ffffff;
             padding: 40px 20px;
@@ -148,6 +150,50 @@
             text-align: center;
             padding: 10px;
             margin-top: 20px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            /* Gallery - Make grid more responsive on mobile */
+            .gallery-container {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 10px;
+            }
+
+            .gallery-container img {
+                height: 150px; /* Reduce image height on mobile */
+            }
+
+            .menu {
+                flex-direction: column;
+            }
+
+            .menu a {
+                font-size: 16px;
+                padding: 8px 12px;
+            }
+
+            /* Form Section */
+            .form-section {
+                padding: 20px;
+                max-width: 90%;
+            }
+
+            /* Modal */
+            .modal img {
+                max-width: 80%;
+                max-height: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-container {
+                grid-template-columns: 1fr; /* Single column layout for small screens */
+            }
+
+            .gallery-container img {
+                height: 120px; /* Further reduce image height */
+            }
         }
     </style>
     <script>
