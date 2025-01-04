@@ -22,16 +22,6 @@
             position: relative;
         }
 
-        .hamburger-menu {
-            display: block;
-            font-size: 30px;
-            cursor: pointer;
-            color: white;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
         .menu {
             display: flex;
             justify-content: center;
@@ -139,20 +129,9 @@
             }
 
             .menu {
-                display: none;
-                flex-direction: column;
-                align-items: flex-start;
-                margin-top: 10px;
-            }
-
-            .menu.active {
-                display: flex;
-                position: absolute;
-                top: 60px;
-                right: 20px;
-                background-color: black;
-                padding: 20px;
-                border-radius: 8px;
+                display: flex; /* Hold menyen horisontal */
+                flex-direction: row; /* Horisontal layout */
+                justify-content: center;
             }
 
             .menu a {
@@ -166,10 +145,6 @@
 
             header h1 {
                 font-size: 24px;
-            }
-
-            .hamburger-menu {
-                display: block;
             }
         }
 
@@ -193,7 +168,6 @@
 
     <!-- Header -->
     <header>
-        <div class="hamburger-menu" onclick="toggleMenu()">&#9776;</div>
         <h1>Galleri</h1>
         <div class="menu">
             <a href="index.html">Hjem</a>
@@ -236,12 +210,6 @@
         function closeModal() {
             var modal = document.getElementById("myModal");
             modal.style.display = "none";
-        }
-
-        // Funksjon for å toggel menyen på mobil
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            menu.classList.toggle('active');
         }
     </script>
 </body>
