@@ -6,14 +6,13 @@
     <title>Bestill her - Skagestad Foto</title>
     <style>
         body {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: white;
-            color: black;
+            background-color: #f9f9f9;
+            color: #333;
         }
 
-        /* Header */
         header {
             background-color: black;
             color: white;
@@ -39,16 +38,13 @@
             border-radius: 5px;
         }
 
-        /* Galleri */
         .gallery-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             padding: 20px;
-        }
-
-        figure {
-            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .gallery-container img {
@@ -64,80 +60,113 @@
             transform: scale(1.05);
         }
 
+        figure {
+            position: relative;
+            text-align: center;
+        }
+
         figcaption {
-            text-align: center;
+            margin-top: 8px;
             font-size: 14px;
-            margin-top: 5px;
-        }
-
-        /* Skjema */
-        .form-container {
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-        }
-
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
             font-weight: bold;
-            margin-bottom: 5px;
         }
 
-        .form-group input,
-        .form-group textarea {
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
         }
 
-        .form-group textarea {
-            resize: vertical;
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
         }
 
-        .form-group button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: black;
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
             color: white;
-            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .form-section {
+            background-color: #ffffff;
+            padding: 40px 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .form-section input, .form-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
+        }
+
+        .form-section button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        .form-group button:hover {
-            background-color: darkgray;
+        .form-section button:hover {
+            background-color: #555;
         }
 
-        /* Footer */
         footer {
             background-color: black;
             color: white;
             text-align: center;
             padding: 10px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            margin-top: 20px;
         }
     </style>
+    <script>
+        // Function to open the modal
+        function openModal(image) {
+            const modal = document.querySelector('.modal');
+            const modalImage = document.querySelector('.modal img');
+            modal.style.display = 'flex';
+            modalImage.src = image.src;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.querySelector('.modal');
+            modal.style.display = 'none';
+        }
+    </script>
 </head>
 <body>
-
-    <!-- Header -->
     <header>
         <h1>Bestill her</h1>
         <div class="menu">
@@ -148,109 +177,102 @@
         </div>
     </header>
 
-        <!-- Galleri - Bilder -->
+    <!-- Galleri -->
     <section class="gallery-container">
         <figure>
-            <img src="bilder/natur1.jpg" alt="Bilde 1" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/natur1.jpg" alt="Bilde 1" onclick="openModal(this)">
             <figcaption>#1</figcaption>
         </figure>
         <figure>
-            <img src="bilder/natur2.jpg" alt="Bilde 2" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/natur2.jpg" alt="Bilde 2" onclick="openModal(this)">
             <figcaption>#2</figcaption>
         </figure>
         <figure>
-            <img src="bilder/natur3.jpg" alt="Bilde 3" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/natur3.jpg" alt="Bilde 3" onclick="openModal(this)">
             <figcaption>#3</figcaption>
         </figure>
         <figure>
-            <img src="bilder/natur4.jpg" alt="Bilde 4" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/natur4.jpg" alt="Bilde 4" onclick="openModal(this)">
             <figcaption>#4</figcaption>
         </figure>
         <figure>
-            <img src="bilder/natur5.jpg" alt="Bilde 5" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/natur5.jpg" alt="Bilde 5" onclick="openModal(this)">
             <figcaption>#5</figcaption>
         </figure>
         <figure>
-            <img src="bilder/natur6.jpg" alt="Bilde 6" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/natur6.jpg" alt="Bilde 6" onclick="openModal(this)">
             <figcaption>#6</figcaption>
         </figure>
         <figure>
-            <img src="bilder/natur7.jpg" alt="Bilde 7" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/natur7.jpg" alt="Bilde 7" onclick="openModal(this)">
             <figcaption>#7</figcaption>
         </figure>
         <figure>
-            <img src="bilder/natur9.jpg" alt="Bilde 8" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/natur9.jpg" alt="Bilde 8" onclick="openModal(this)">
             <figcaption>#8</figcaption>
         </figure>
         <figure>
-            <img src="bilder/natur11.jpg" alt="Bilde 9" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/natur11.jpg" alt="Bilde 9" onclick="openModal(this)">
             <figcaption>#9</figcaption>
         </figure>
         <figure>
-            <img src="bilder/natur12.jpg" alt="Bilde 10" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/natur12.jpg" alt="Bilde 10" onclick="openModal(this)">
             <figcaption>#10</figcaption>
         </figure>
         <figure>
-            <img src="bilder/svarthvitt1.jpg" alt="Bilde 11" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/svarthvitt1.jpg" alt="Bilde 11" onclick="openModal(this)">
             <figcaption>#11</figcaption>
         </figure>
         <figure>
-            <img src="bilder/svarthvitt2.jpg" alt="Bilde 12" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/svarthvitt2.jpg" alt="Bilde 12" onclick="openModal(this)">
             <figcaption>#12</figcaption>
         </figure>
         <figure>
-            <img src="bilder/svarthvitt3.jpg" alt="Bilde 13" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/svarthvitt3.jpg" alt="Bilde 13" onclick="openModal(this)">
             <figcaption>#13</figcaption>
         </figure>
         <figure>
-            <img src="bilder/svarthvitt5.jpg" alt="Bilde 14" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/svarthvitt5.jpg" alt="Bilde 14" onclick="openModal(this)">
             <figcaption>#14</figcaption>
         </figure>
         <figure>
-            <img src="bilder/svarthvitt6.jpg" alt="Bilde 15" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/svarthvitt6.jpg" alt="Bilde 15" onclick="openModal(this)">
             <figcaption>#15</figcaption>
         </figure>
         <figure>
-            <img src="bilder/natur13.jpg" alt="Bilde 16" class="gallery-item" onclick="openModal(this)">
+            <img src="bilder/natur13.jpg" alt="Bilde 16" onclick="openModal(this)">
             <figcaption>#16</figcaption>
         </figure>
     </section>
 
     <!-- Bestillingsskjema -->
-    <section class="form-container">
-    <h2>Bestill ditt bilde, så blir vi enig om pris og størrelse</h2>
-    <form action="https://formspree.io/f/xvggvryv" method="post">
-        <div class="form-group">
+    <section class="form-section">
+        <h2>Bestill ditt bilde</h2>
+        <form action="https://formspree.io/f/xvggvryv" method="POST">
             <label for="name">Navn:</label>
-            <input type="text" id="name" name="name" placeholder="Ditt navn" required>
-        </div>
-        <div class="form-group">
+            <input type="text" id="name" name="name" required>
+            
             <label for="email">E-post:</label>
-            <input type="email" id="email" name="email" placeholder="Din e-postadresse" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">Telefon:</label>
-            <input type="tel" id="phone" name="phone" placeholder="Ditt telefonnummer">
-        </div>
-        <div class="form-group">
-            <label for="photo-id">Bilde-ID:</label>
-            <input type="text" id="photo-id" name="photo-id" placeholder="ID-en på bildet du ønsker å bestille" required>
-        </div>
-        <div class="form-group">
-            <label for="message">Melding:</label>
-            <textarea id="message" name="message" rows="5" placeholder="Eventuelle kommentarer eller spesifikasjoner"></textarea>
-        </div>
-        <div class="form-group">
+            <input type="email" id="email" name="email" required>
+            
+            <label for="image">Bilde nummer:</label>
+            <input type="text" id="image" name="image" required>
+            
+            <label for="message">Beskjed:</label>
+            <textarea id="message" name="message"></textarea>
+            
             <button type="submit">Send Bestilling</button>
-        </div>
-    </form>
-</section>
+        </form>
+    </section>
 
+    <!-- Modal for image viewing -->
+    <div class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">×</span>
+        <img src="" alt="Fullsize Image">
+    </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Skagestad Foto</p>
     </footer>
-
 </body>
 </html>
