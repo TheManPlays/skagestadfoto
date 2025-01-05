@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skagestad Foto</title>
+
+    <!-- AOS Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
     <style>
         /* Global styling */
         body {
-            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for alle tekster */
+            font-family: 'Times New Roman', Times, serif;
             margin: 0;
             padding: 0;
             background-color: white;
@@ -26,9 +30,9 @@
         .menu {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .menu a {
@@ -36,7 +40,7 @@
             text-decoration: none;
             font-size: 18px;
             padding: 10px 15px;
-            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for meny-tekst */
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .menu a:hover {
@@ -44,73 +48,53 @@
             border-radius: 5px;
         }
 
-        /* Hamburger menu (hidden by default) */
-        .hamburger-menu {
-            display: none;
-            cursor: pointer;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .hamburger-menu span {
-            background-color: white;
-            display: block;
-            height: 4px;
-            width: 30px;
-            margin: 6px 0;
-        }
-
         /* Hero Section */
         .hero {
-            background-image: url('bilder/natur12.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
+            height: 100vh; /* Fullskjerm høyde */
             display: flex;
             justify-content: center;
             align-items: center;
+            background-size: cover;
+            background-position: center;
             position: relative;
+            cursor: pointer; /* Hele bildet blir klikkbart */
+        }
+
+        .hero-1 {
+            background-image: url('bilder/natur12.jpg'); /* Første hero-bilde */
+        }
+
+        .hero-2 {
+            background-image: url('bilder/natur5.jpg'); /* Andre hero-bilde */
+            position: relative;
+        }
+
+        /* Mørkere overlay på hero 2 for bedre tekstsynlighet */
+        .hero-2::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* 50% svart overlay */
+            z-index: 1;
         }
 
         .hero-content {
             color: white;
             text-align: center;
-            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for hero-tekst */
+            font-family: 'Times New Roman', Times, serif;
+            z-index: 2; /* Sørger for at teksten er over overlayet */
         }
 
         .hero h1 {
-            font-size: 60px;
+            font-size: 70px;
             text-transform: uppercase;
         }
 
-        /* Galleri-bilde under Hero */
-        .gallery-preview {
-            display: flex;
-            justify-content: center;
-            margin-top: 40px;
-            position: relative;
-            width: 100%;
-        }
-
-        .gallery-preview img {
-            width: 100%;
-            height: 80vh;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .gallery-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 50px;
-            color: white;
-            text-transform: uppercase;
-            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for galleri-tekst */
+        .hero p {
+            font-size: 28px;
         }
 
         /* Kontakt meg seksjon */
@@ -123,12 +107,10 @@
         .contact h2 {
             font-size: 36px;
             color: black;
-            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for kontakt-overskrift */
         }
 
         .contact p {
             font-size: 18px;
-            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for kontakt-tekst */
         }
 
         .contact button {
@@ -138,50 +120,22 @@
             border: none;
             font-size: 18px;
             cursor: pointer;
-            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for knappe-tekst */
         }
 
         .contact button:hover {
             background-color: darkblue;
         }
 
-        /* Footer - Copyright */
+        /* Footer */
         footer {
             background-color: black;
             color: white;
             text-align: center;
             padding: 10px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for footer-tekst */
         }
 
-        /* Responsiv Design - Endringer for mobile enheter */
+        /* Responsiv Design */
         @media (max-width: 768px) {
-            .menu {
-                display: none; /* Skjuler menyen på mobile enheter */
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-                background-color: black;
-            }
-
-            .menu a {
-                padding: 15px;
-                font-size: 18px;
-                border-bottom: 1px solid white;
-                font-family: 'Times New Roman', Times, serif; /* Bruker Times New Roman for meny-tekst på mobil */
-            }
-
-            .menu.active {
-                display: flex; /* Vist meny når aktiv */
-            }
-
-            .hamburger-menu {
-                display: block; /* Vist hamburger-ikon på mobile enheter */
-            }
-
             .hero h1 {
                 font-size: 40px;
             }
@@ -192,11 +146,7 @@
 
     <!-- Header -->
     <header>
-        <div class="hamburger-menu" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <h1>Velkommen</h1>
         <nav class="menu">
             <a href="index.html">Hjem</a>
             <a href="galleri.html">Galleri</a>
@@ -205,20 +155,20 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Første Hero Section -->
+    <section class="hero hero-1" data-aos="fade-up" data-aos-duration="1500">
         <div class="hero-content">
             <h1>SKAGESTAD FOTO</h1>
             <p>Fotografering av natur og landskap</p>
         </div>
     </section>
 
-    <!-- Galleri-bilde under Hero -->
-    <section class="gallery-preview">
-        <a href="galleri.html">
-            <img src="bilder/svarthvitt2.jpg" alt="Galleri Link">
-            <div class="gallery-text">Galleri</div>
-        </a>
+    <!-- Andre Hero Section -->
+    <section class="hero hero-2" onclick="location.href='galleri.html';" data-aos="fade-down" data-aos-duration="1500">
+        <div class="hero-content">
+            <h1>VELKOMMEN TIL GALLERIET</h1>
+            <p>Utforsk fantastiske bilder</p>
+        </div>
     </section>
 
     <!-- Kontakt meg seksjon -->
@@ -233,12 +183,11 @@
         <p>&copy; 2025 Skagestad Foto</p>
     </footer>
 
-    <!-- JavaScript for Hamburger Menu -->
+    <!-- AOS Script -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            menu.classList.toggle('active');
-        }
+        // Initialiser AOS
+        AOS.init();
     </script>
 
 </body>
