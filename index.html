@@ -24,7 +24,6 @@
             color: white;
             padding: 15px 0;
             text-align: center;
-            position: relative;
         }
 
         .menu {
@@ -40,7 +39,6 @@
             text-decoration: none;
             font-size: 18px;
             padding: 10px 15px;
-            font-family: 'Times New Roman', Times, serif;
         }
 
         .menu a:hover {
@@ -57,35 +55,39 @@
             background-size: cover;
             background-position: center;
             position: relative;
-            cursor: pointer; /* Hele bildet blir klikkbart */
+            cursor: pointer;
         }
 
         .hero-1 {
-            background-image: url('bilder/natur12.jpg'); /* Første hero-bilde */
+            background-image: url('bilder/natur12.jpg');
         }
 
         .hero-2 {
-            background-image: url('bilder/natur5.jpg'); /* Andre hero-bilde */
+            background-image: url('bilder/natur5.jpg');
             position: relative;
         }
 
-        /* Mørkere overlay på hero 2 for bedre tekstsynlighet */
-        .hero-2::after {
+        .hero-3 {
+            background-image: url('bilder/bil14.jpg');
+            position: relative;
+        }
+
+        /* Overlay for bedre tekstsynlighet */
+        .hero-2::after, .hero-3::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.4); /* 50% svart overlay */
+            background: rgba(0, 0, 0, 0.4);
             z-index: 1;
         }
 
         .hero-content {
             color: white;
             text-align: center;
-            font-family: 'Times New Roman', Times, serif;
-            z-index: 2; /* Sørger for at teksten er over overlayet */
+            z-index: 2;
         }
 
         .hero h1 {
@@ -150,6 +152,7 @@
         <nav class="menu">
             <a href="index.html">Hjem</a>
             <a href="galleri.html">Galleri</a>
+            <a href="bilgalleri.html">BIl Galleri</a>
             <a href="ommeg.html">Om Meg</a>
             <a href="bestillher.html">Bestill her</a>
         </nav>
@@ -171,6 +174,14 @@
         </div>
     </section>
 
+    <!-- Tredje Hero Section -->
+    <section class="hero hero-3" onclick="location.href='bilgalleri.html';" data-aos="fade-left" data-aos-duration="1500">
+        <div class="hero-content">
+            <h1>VELKOMMEN TIL BIL GALLERI</h1>
+            <p>Utforsk bil bilder</p>
+        </div>
+    </section>
+
     <!-- Kontakt meg seksjon -->
     <section class="contact">
         <h2>Kontakt meg</h2>
@@ -180,7 +191,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Skagestad Foto</p>
+        <p>&copy; 2025 Skagestad Foto | Alle rettigheter forbeholdt</p>
     </footer>
 
     <!-- AOS Script -->
