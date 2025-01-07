@@ -24,6 +24,7 @@
             color: white;
             padding: 15px 0;
             text-align: center;
+            position: relative;
         }
 
         .menu {
@@ -44,6 +45,52 @@
         .menu a:hover {
             background-color: darkgray;
             border-radius: 5px;
+        }
+
+        /* Hamburgermeny */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: black;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .mobile-menu a {
+            color: white;
+            padding: 10px 0;
+            text-decoration: none;
+            font-size: 18px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            background-color: darkgray;
         }
 
         /* Hero Section */
@@ -138,6 +185,14 @@
 
         /* Responsiv Design */
         @media (max-width: 768px) {
+            .menu {
+                display: none; /* Skjul hovedmeny på mobil */
+            }
+
+            .hamburger {
+                display: flex; /* Vis hamburgermeny */
+            }
+
             .hero h1 {
                 font-size: 40px;
             }
@@ -149,7 +204,25 @@
     <!-- Header -->
     <header>
         <h1>Velkommen</h1>
+        
+        <!-- Hovedmeny -->
         <nav class="menu">
+            <a href="index.html">Hjem</a>
+            <a href="galleri.html">Galleri</a>
+            <a href="bilgalleri.html">Bil Galleri</a>
+            <a href="ommeg.html">Om Meg</a>
+            <a href="bestillher.html">Bestill her</a>
+        </nav>
+
+        <!-- Hamburgermeny -->
+        <button class="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Mobilmeny -->
+        <nav class="mobile-menu">
             <a href="index.html">Hjem</a>
             <a href="galleri.html">Galleri</a>
             <a href="bilgalleri.html">Bil Galleri</a>
@@ -199,6 +272,12 @@
     <script>
         // Initialiser AOS
         AOS.init();
+
+        // Toggle mobilmeny
+        function toggleMobileMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+        }
     </script>
 
 </body>
