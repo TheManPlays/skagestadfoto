@@ -24,6 +24,7 @@
             color: white;
             padding: 15px 0;
             text-align: center;
+            position: relative;
         }
 
         .menu {
@@ -46,100 +47,58 @@
             border-radius: 5px;
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh; /* Fullskjerm høyde */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .hero-1 {
-            background-image: url('bilder/natur12.jpg');
-        }
-
-        .hero-2 {
-            background-image: url('bilder/natur5.jpg');
-            position: relative;
-        }
-
-        .hero-3 {
-            background-image: url('bilder/bil14.jpg');
-            position: relative;
-        }
-
-        /* Overlay for bedre tekstsynlighet */
-        .hero-2::after, .hero-3::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
-        }
-
-        .hero-content {
-            color: white;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 70px;
-            text-transform: uppercase;
-        }
-
-        .hero p {
-            font-size: 28px;
-        }
-
-        /* Kontakt meg seksjon */
-        .contact {
-            padding: 40px;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 36px;
-            color: black;
-        }
-
-        .contact p {
-            font-size: 18px;
-        }
-
-        .contact button {
-            padding: 10px;
-            background-color: blue;
-            color: white;
+        /* Hamburgermeny */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+            background: none;
             border: none;
-            font-size: 18px;
             cursor: pointer;
+            margin: 10px;
         }
 
-        .contact button:hover {
-            background-color: darkblue;
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background-color: white;
         }
 
-        /* Footer */
-        footer {
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
             background-color: black;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .mobile-menu a {
             color: white;
+            padding: 10px 0;
+            text-decoration: none;
+            font-size: 18px;
+            width: 100%;
             text-align: center;
-            padding: 10px;
+        }
+
+        .mobile-menu a:hover {
+            background-color: darkgray;
         }
 
         /* Responsiv Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 40px;
+            .menu {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
             }
         }
     </style>
@@ -155,6 +114,24 @@
             <a href="bilgalleri.html">Bil Galleri</a>
             <a href="ommeg.html">Om Meg</a>
             <a href="bestillher.html">Bestill her</a>
+            <a href="storrelseogpriser.html">Størrelse og priser</a>
+        </nav>
+
+        <!-- Hamburgermeny -->
+        <button class="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Mobilmeny -->
+        <nav class="mobile-menu">
+            <a href="index.html">Hjem</a>
+            <a href="galleri.html">Galleri</a>
+            <a href="bilgalleri.html">Bil Galleri</a>
+            <a href="ommeg.html">Om Meg</a>
+            <a href="bestillher.html">Bestill her</a>
+            <a href="storrelseogpriser.html">Størrelse og priser</a>
         </nav>
     </header>
 
@@ -166,39 +143,17 @@
         </div>
     </section>
 
-    <!-- Andre Hero Section -->
-    <section class="hero hero-2" onclick="location.href='galleri.html';" data-aos="fade-down" data-aos-duration="1500">
-        <div class="hero-content">
-            <h1>GALLERI</h1>
-            <p>Utforsk fantastiske bilder</p>
-        </div>
-    </section>
-
-    <!-- Tredje Hero Section -->
-    <section class="hero hero-3" onclick="location.href='bilgalleri.html';" data-aos="fade-down" data-aos-duration="1500">
-        <div class="hero-content">
-            <h1>BIL GALLERI</h1>
-            <p>Utforsk bil bilder</p>
-        </div>
-    </section>
-
-    <!-- Kontakt meg seksjon -->
-    <section class="contact">
-        <h2>Kontakt meg</h2>
-        <p>Hei! Ta gjerne kontakt dersom du har spørsmål, eller om du er interessert i et eller flere av bildene jeg har.</p>
-        <button onclick="window.location.href='mailto:karl.skagestad@gmail.com'">Send en e-post</button>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Skagestad Foto | Alle rettigheter forbeholdt</p>
-    </footer>
-
     <!-- AOS Script -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         // Initialiser AOS
         AOS.init();
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+        }
     </script>
 
 </body>
